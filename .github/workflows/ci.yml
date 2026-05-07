@@ -98,9 +98,6 @@ jobs:
           output: trivy-results.sarif
           severity: CRITICAL,HIGH
 
-      - name: Build application
-        run: npm run build
-
       - name: Generate SBOM
         uses: anchore/sbom-action@v0
         with:
