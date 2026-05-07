@@ -38,18 +38,3 @@ Want to learn how to build this game from scratch using React & Next.js? I've go
 Whether you're a beginner looking to enhance your skills or an experienced developer seeking a fun project, this course will take you through the core concepts of React while building a fully functional game.
 
 [![Build 2048 Game in React](https://assets.mateu.sh/assets/github-2048-in-react-readme)](https://assets.mateu.sh/r/github-2048-in-react-readme)
-
-## Support
-
-If you encounter any issues or have suggestions, feel free to open an issue. Your feedback is always appreciated!
-
-[lint-badge]: https://github.com/mateuszsokola/2048-in-react/actions/worklows/lint.yml/badge.svg
-[lint-url]: https://github.com/mateuszsokola/2048-in-react/actions/workflows/actions/workflows/lint.yml
-[test-badge]: https://github.com/mateuszsokola/2048-in-react/actions/workflows/test.yml/badge.svg
-[test-url]: https://github.com/mateuszsokola/2048-in-react/actions/workflows/test.yml
-[issues-badge]: https://img.shields.io/github/issues/mateuszsokola/2048-in-react
-[issues-url]: https://github.com/mateuszsokola/2048-in-react/issues
-[typescript-badge]: https://badges.frapsoft.com/typescript/code/typescript.svg?v=101
-[typescript-url]: https://github.com/microsoft/TypeScript
-
-eks create cluster command - eksctl create cluster -f cluster.yaml
