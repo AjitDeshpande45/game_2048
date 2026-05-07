@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import React from 'react';
 import Board from "@/components/board";
 import Score from "@/components/score";
 import styles from "@/styles/index.module.css";
@@ -37,7 +38,7 @@ export default function Home() {
           <a
             href="https://assets.mateu.sh/r/github-2048-in-react-readme"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             Udemy course
           </a>{" "}
@@ -49,7 +50,7 @@ export default function Home() {
           <a
             href="https://github.com/mateuszsokola/2048-in-react"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             <Image
               src="social-github.svg"
@@ -58,7 +59,7 @@ export default function Home() {
               height={32}
             />
           </a>
-          <a href="https://twitter.com/msokola" target="_blank" rel="noopener">
+          <a href="https://twitter.com/msokola" target="_blank" rel="noopener noreferrer">
             <Image
               src="social-twitter.svg"
               alt="Matéush on Twitter"

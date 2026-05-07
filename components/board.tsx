@@ -1,5 +1,6 @@
 import { useCallback, useContext, useEffect, useRef } from "react";
 import { Tile as TileModel } from "@/models/tile";
+import React from 'react';
 import styles from "@/styles/board.module.css";
 import Tile from "./tile";
 import { GameContext } from "@/context/game-context";

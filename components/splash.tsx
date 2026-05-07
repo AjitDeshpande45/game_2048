@@ -1,7 +1,7 @@
 import { GameContext } from "@/context/game-context";
 import styles from "@/styles/splash.module.css";
 import { useContext } from "react";
-
+import React from 'react';
 export default function Splash({ heading = "You won!", type = "" }) {
   const { startGame } = useContext(GameContext);
 

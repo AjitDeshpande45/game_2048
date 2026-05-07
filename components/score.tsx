@@ -1,7 +1,7 @@
 import { GameContext } from "@/context/game-context";
 import styles from "@/styles/score.module.css";
 import { useContext } from "react";
-
+import React from 'react';
 export default function Score() {
   const { score } = useContext(GameContext);
 

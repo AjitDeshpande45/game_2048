@@ -5,7 +5,7 @@ import {
   useRef,
   useState,
 } from "react";
-
+import React from 'react';
 export type SwipeInput = { deltaX: number; deltaY: number };
 
 type MobileSwiperProps = PropsWithChildren<{

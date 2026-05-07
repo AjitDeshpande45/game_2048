@@ -5,6 +5,7 @@
   ],
   "rules": {
     "semi": ["error", "always"],
-    "no-console": "warn"
+    "no-console": "warn",
+    "react/prop-types": "off"
   }
 }
