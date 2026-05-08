@@ -3,7 +3,8 @@ name: cd-pipeline-game2048
 on:
   workflow_dispatch:
   workflow_run:
-    workflows: ["ci-pipeline-game2048"]
+    workflows:
+      - ci-pipeline-game2048
     types:
       - completed
     branches:
