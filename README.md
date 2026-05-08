@@ -31,7 +31,7 @@ Just start dev server on [localhost](http://localhost:3000):
 
 **Start coding!** 🎉
 
-## Build your own 2048 Game! 🚀
+## Build your own 2048 Game!
 
 Want to learn how to build this game from scratch using React & Next.js? I've got you covered! This project is part of an online course where I guide you through the entire process, step-by-step.
 
