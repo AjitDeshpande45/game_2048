@@ -1,6 +1,7 @@
 name: ci-pipeline-game2048
 
 on:
+  workflow_dispatch:
   push:
     branches:
         - dev
