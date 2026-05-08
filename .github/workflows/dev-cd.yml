@@ -1,0 +1,78 @@
+name: cd-pipeline-game2048
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: ["ci-pipeline-game2048"]
+    types:
+      - completed
+    branches:
+      - dev
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: false 
+
+env:
+  AWS_REGION: us-east-1
+  ECS_CLUSTER: game2048-cluster
+  ECS_SERVICE: game2048-service
+  TASK_DEFINITION: game2048-task
+  CONTAINER_NAME: game2048-container
+  IMAGE_NAME: ${{ vars.DOCKERHUB_USERNAME }}/game2048
+
+jobs:
+
+  check-ci:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: echo "CI passed — proceeding to deploy"
+
+  deploy-staging:
+    needs: check-ci
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: staging
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      # Pull the exact image SHA that CI built and pushed
+      - name: Download task definition
+        run: |
+          aws ecs describe-task-definition \
+            --task-definition ${{ env.TASK_DEFINITION }}-staging \
+            --query taskDefinition \
+            > task-definition-staging.json
+
+      # Swap the image tag to the current commit SHA
+      - name: Update image in task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: task-definition-staging.json
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ env.IMAGE_NAME }}:${{ github.event.workflow_run.head_sha }}
+
+      # Register new task definition revision + update service
+      - name: Deploy to ECS staging
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v2
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}-staging
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
+          wait-for-minutes: 10
